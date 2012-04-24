@@ -24,7 +24,7 @@
 		[overlayImageView release];
 		
 		UIButton *cameraButton = [UIButton buttonWithType:UIButtonTypeCustom];
-		cameraButton.frame = CGRectMake(130, 445, 0, 0);
+		cameraButton.frame = CGRectMake(122, 441, 0, 0);
 		[cameraButton setImage:[UIImage imageNamed:@"camera-normal.png"] forState:UIControlStateNormal];
 		[cameraButton setImage:[UIImage imageNamed:@"camera-press.png"] forState:UIControlStateHighlighted];
 		[cameraButton sizeToFit];
