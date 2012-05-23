@@ -34,15 +34,19 @@
 
 - (id)init {
     if (self = [super init]) {
-		self.sourceType = UIImagePickerControllerSourceTypeCamera;
-		//self.navigationBarHidden = YES;
-		//self.wantsFullScreenLayout = YES;
-		self.showsCameraControls = NO;
-		self.cameraViewTransform = CGAffineTransformScale(self.cameraViewTransform, CAMERA_TRANSFORM_X, CAMERA_TRANSFORM_Y);
-		SMOverlayView *overlayView = [[SMOverlayView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGTH)];
-		overlayView.delegate = self;
-		self.cameraOverlayView = overlayView;
-		[overlayView release];
+		if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+			self.sourceType = UIImagePickerControllerSourceTypeCamera;
+			self.navigationBarHidden = YES;
+			self.wantsFullScreenLayout = YES;
+			self.showsCameraControls = NO;
+			self.cameraViewTransform = CGAffineTransformScale(self.cameraViewTransform, CAMERA_TRANSFORM_X, CAMERA_TRANSFORM_Y);
+			SMOverlayView *overlayView = [[SMOverlayView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGTH)];
+			overlayView.delegate = self;
+			self.cameraOverlayView = overlayView;
+			[overlayView release];
+		} else {
+			self.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+		}
 	}
 	return self;
 }
